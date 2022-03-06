@@ -3,9 +3,9 @@ import time
 import os
 
 driver = webdriver.Chrome(
-    executable_path=r"E:\apuntes\bots\python\driver\99\chromedriver.exe")
+    executable_path=r"E:\apuntes\bots\python\documentacion\driver\99\chromedriver.exe")
 
-url= "file:///E:/apuntes/bots/python/web/buttom.html"
+url = "file:///E:/apuntes/bots/python/documentacion/recursos/web/buttom.html"
 driver.get(url)
 time.sleep(1)
 

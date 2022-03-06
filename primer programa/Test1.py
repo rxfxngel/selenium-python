@@ -1,7 +1,8 @@
 from selenium import webdriver
 import time
 
-driver = webdriver.Chrome(executable_path=r"E:\apuntes\bots\python\driver\99\chromedriver.exe")
+driver = webdriver.Chrome(
+    executable_path=r"E:\apuntes\bots\python\documentacion\driver\99\chromedriver.exe")
 
 web =[
     'http://python.org',
@@ -9,9 +10,11 @@ web =[
     'https://stackoverflow.com/'
 ]
 
+
 for i in range(0,len(web)):
     driver.get(web[i])
-    driver.get_screenshot_as_file("shoot"+str(i)+".png")
+    driver.get_screenshot_as_file(
+        "E:\\apuntes\\bots\\python\\documentacion\\primer programa\\"+"shoot"+str(i)+".png")
     print(driver.title)
     time.sleep(1)
 driver.quit()
