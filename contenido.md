@@ -5,7 +5,7 @@ Con el fin de ahorrar tiempo y costes al desarrollar aplicaciones en Python, Jas
 
 ## Primer programa
 
-El siguiente programa importa en webdriver de  Selenium en Python para automatizar pruebas/procesos web, en este caso se trabaja con el navegador chrome, por ello es  necesario descargar el archivo .exe del webdriver segun la version que necesites, luego ponerlo en una ruta especifica para que en el parametro **executable_path** pongas la ruta, este programa ingresa a las webs y toma capturas de pantalla.
+El siguiente programa importa el webdriver de  Selenium en Python para automatizar pruebas/procesos web, en este caso se trabaja con el navegador chrome, por ello es  necesario descargar el archivo .exe del webdriver segun la version que se requiera, luego poner el exe en una ruta especifica para que en el parametro **executable_path** pongas la ruta, ejemplo: este programa ingresa a las webs y toma capturas de pantalla.
 
 ```python
 from selenium import webdriver
@@ -58,4 +58,162 @@ alert.accept()
 time.sleep(5)
 driver.quit()
 ```
+
+## Llenar caja de texto
+
+```python
+from selenium import webdriver
+import time
+import os
+
+#iniciar webdriver y cargar pagina web de archivo local
+driver = webdriver.Chrome(
+    executable_path=r"E:\apuntes\bots\python\documentacion\driver\99\chromedriver.exe")
+
+url="file:///E:/apuntes/bots/python/documentacion/material/code/websites/textfields.html"
+driver.get(url)
+time.sleep(1)
+
+#Ingresar nombre
+field1=driver.find_element_by_id("FirstName")
+field1.send_keys('Rafael')
+time.sleep(1)
+
+#Ingresar apellido
+field1=driver.find_element_by_id("LastName")
+field1.send_keys('Mamani')
+time.sleep(1)
+
+#close browser
+time.sleep(5)
+driver.quit()
+```
+
+## Llenar área de texto
+
+```python
+from selenium import webdriver
+import time
+import os
+
+#iniciar webdriver y cargar pagina web de archivo local
+driver = webdriver.Chrome(
+    executable_path=r"E:\apuntes\bots\python\documentacion\driver\99\chromedriver.exe")
+
+url = "file:///E:/apuntes/bots/python/documentacion/material/code/websites/textbox.html"
+driver.get(url)
+time.sleep(1)
+
+# enter text
+field1 = driver.find_element_by_id("textbox")
+field1.send_keys('Hola mundo\nRafael\nMamani')
+time.sleep(1)
+
+#close  browser
+
+time.sleep(5)
+driver.quit()
+```
+
+## Obtener texto
+
+```python
+from selenium import webdriver
+import time
+import os
+
+#iniciar webdriver y cargar pagina web de archivo local
+driver = webdriver.Chrome(
+    executable_path=r"E:\apuntes\bots\python\documentacion\driver\99\chromedriver.exe")
+
+url = "file:///E:/apuntes/bots/python/documentacion/material/code/websites/element.html"
+driver.get(url)
+time.sleep(1)
+#obtener texto del elemento title1
+title1 = driver.find_element_by_id("title1").text
+print(title1)
+#obtener texto del elemento profile
+linkText = driver.find_element_by_id("profile").text
+print(linkText)
+
+time.sleep(5)
+driver.quit()
+```
+
+## Obtener enlaces
+
+```python
+from selenium import webdriver
+import time
+import os
+
+#iniciar webdriver y cargar pagina web de archivo local
+driver = webdriver.Chrome(
+    executable_path=r"E:\apuntes\bots\python\documentacion\driver\99\chromedriver.exe")
+
+url = "file:///E:/apuntes/bots/python/documentacion/material/code/websites/links.html"
+driver.get(url)
+time.sleep(1)
+
+elems = driver.find_elements_by_xpath("//a[@href]")
+
+for elem in elems:
+    print(elem.get_attribute("href"))
+
+driver.quit()
+```
+
+## seleccionar Radio Button
+
+```python
+from selenium import webdriver
+import time
+import os
+
+#iniciar webdriver y cargar pagina web de archivo local
+driver = webdriver.Chrome(
+    executable_path=r"E:\apuntes\bots\python\documentacion\driver\99\chromedriver.exe")
+
+url = "file:///E:/apuntes/bots/python/documentacion/material/code/websites/radio.html"
+driver.get(url)
+time.sleep(1)
+
+#select element
+radio = driver.find_element_by_xpath("/html/body/form/input[3]")
+radio.click()
+time.sleep(2)
+```
+
+## seleccionar combo
+
+```python
+from selenium.webdriver.support.ui import Select
+from selenium import webdriver
+import time
+import os
+
+#iniciar webdriver y cargar pagina web de archivo local
+driver = webdriver.Chrome(
+    executable_path=r"E:\apuntes\bots\python\documentacion\driver\99\chromedriver.exe")
+
+url = "file:///E:/apuntes/bots/python/documentacion/material/code/websites/dropdown.html"
+driver.get(url)
+time.sleep(1)
+
+select = Select(driver.find_element_by_id('country'))
+time.sleep(2)
+#seleccionar por texto visible
+select.select_by_visible_text('Germany')
+
+time.sleep(2)
+
+#seleccionar por valor
+select.select_by_value('5')
+
+time.sleep(5)
+
+driver.quit()
+```
+
+
 
